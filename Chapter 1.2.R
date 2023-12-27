@@ -1,4 +1,4 @@
-# Chapter 1 The R Programmin Environment
+# Chapter 1 The R Programming Environment
 
 # 1.1
 
