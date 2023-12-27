@@ -112,3 +112,6 @@ rbind(x, y)
 
 # 1.1.8 
 
+# Lissts are a special type of vecto that can contain elements of different classes.
+# Lists, in combination with the various "apply" functions discussed later, make for a powerful combination
+# Lists can be explicitly created using the list() function, which takes an arbitrary number of arguments.
