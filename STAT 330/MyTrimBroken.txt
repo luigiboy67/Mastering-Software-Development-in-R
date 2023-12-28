@@ -1,0 +1,14 @@
+function(data)		
+{
+xmax <- max(data)
+#print(xmax)
+xmin <- min(data)
+#print(xmin)
+S <- sum(data) - xmax – xmin
+#print(S)
+L <- length(data) – 2
+#print(L)
+M <- S/L
+#print(M)
+return(M)
+}#end function

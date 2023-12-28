@@ -1,0 +1,44 @@
+function(datavec, distbn, n=30, m=1000, alpha=0.05)
+{
+#########################################################################
+# A function to estimate the coverage probability of the one-sample t
+# confidence interval based on samples of size n. It also creates a
+# plot of the intervals displaying their behavior over repeated samples.
+# Argument explanation:
+# datavec is a numeric vector of length n*m containing data
+# generated from some distribution with expected value (mean) 0.
+# distbn is a character value (a label) identifying the
+# distribution tested on the output and plot.
+# n is the sample size to be investigated, default 30.
+# m is the number of simulated samples of size n generated
+# (and hence the number of computed confidence intervals)
+# default value 1000.
+# alpha is the nominal error rate for the intervals, default 0.05.
+# The output is a list reporting the relative frequency of times the
+# intervals' lower bound and upper bound miss, and the total of these
+# (which should be approximately alpha if the intervals are working
+# properly for the tested distribution). Also, the mean width of the intervals.
+#########################################################################
+if (length(datavec)!=m*n)
+ return("Error: the length of your data vector is not m*n") 
+datamat <- matrix(datavec, m, n) #A
+xbar<-apply(datamat,1,mean) #calculate mean of each sample (row of datamat)
+stddev<-apply(datamat,1,sd) #B
+stderr<-(stddev/sqrt(n)) #C
+tcrit<-qt(1-alpha/2,n-1)
+lower<-xbar-tcrit*stderr #D
+upper<-xbar+tcrit*stderr #calculate the upper bounds of the intervals
+CIs<- matrix(c(lower,upper),m,ncol=2) #E 
+matplot(1:m,CIs,type="n",xlab="",ylab="")
+matlines(1:m,CIs,lty=c(1,1),col=c(1,1),lwd=1) 
+abline(h=0,col="red", lwd=3) #F
+title(paste(m, "CI's from the", distbn,"distribution")) #G
+pmiss.lower<-sum(lower>0)/m
+pmiss.upper<-sum(upper<0)/m
+pmiss.total<-pmiss.lower+pmiss.upper
+mean.CIwidth<- mean(2*(tcrit*stderr)) #H
+out<-list(alpha,n,m,distbn,pmiss.total,pmiss.lower,pmiss.upper,mean.CIwidth)
+names(out)<-c("alpha","sampsize.n","simsize.m","distbn","pmiss.total",
+"pmiss.lower","pmiss.upper","mean.CIwidth")
+out
+}
