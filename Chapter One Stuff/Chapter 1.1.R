@@ -2,6 +2,14 @@
 
 # 1.1
 
+# learning objectives for this section are to:
+# Develop fluency in using R at the console
+# Execute basic arithmetic operations
+# Subset and index R objects
+# Remove missing values from an R object
+# Modify object attributes and metadata
+# Describe differences in different R classes and data types
+
 # 1.1.1
 #At the R prompt we type expressions. The <- symbol (gets arrow) is the assignment operator.
 x <- 1
