@@ -11,7 +11,7 @@
 # Describe differences in different R classes and data types
 
 # 1.1.1
-#At the R prompt we type expressions. The <- symbol (gets arrow) is the assignment operator.
+# At the R prompt we type expressions. The <- symbol (gets arrow) is the assignment operator.
 x <- 1
 print(x)
 x
