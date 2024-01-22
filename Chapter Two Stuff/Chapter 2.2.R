@@ -63,3 +63,40 @@ num_download("filehash", "2016-07-20")
 num_download("Rcpp", "2016-07-19")
 
 # 2.2.2.1
+# by setting a default value, if an argument is not explicitly set by the user, the function can use the default value.
+# ex:
+num_download <- function(pkgname, date = "2016-07-20") {
+  year <- substr(date, 1, 4)
+  src <- sprintf("http://cran-logs.rstudio.com/%s/%s.csv.gz",
+                 year, date)
+  dest <- file.path("data", basename(src))
+  if(!file.exists(dest))
+    download.file(src, dest, quiet = TRUE)
+  cran <- read_csv(dest, col_types = "ccicccccci", progress = FALSE)
+  cran %>% filter(package == pkgname) %>% nrow
+}
+
+# 2.2.2.2
+
+# this function adds a bit of error checking to see if download.file() was successful or not
+check_for_logfile <- function(date) {
+  year <- substr(date, 1, 4)
+  src <- sprintf("http://cran-logs.rstudio.com/%s/%s.csv.gz",
+                 year, date)
+  dest <- file.path("data", basename(src))
+  if(!file.exists(dest)) {
+    val <- download.file(src, dest, quiet = TRUE)
+    if(!val)
+      stop("unable to download file ", src)
+  }
+  dest
+}
+
+# num_download() is somewhat simpler():
+num_download <- function(pkgname, date = "2016-07-20") {
+  dest <- check_for_logfile(date)
+  cran <- read_csv(dest, col_types = "ccicccccci", progress = FALSE)
+  cran %>% filter(package == pkgname) %>% nrow
+}  
+
+# 
