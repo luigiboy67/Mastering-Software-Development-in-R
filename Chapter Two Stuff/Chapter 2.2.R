@@ -99,4 +99,27 @@ num_download <- function(pkgname, date = "2016-07-20") {
   cran %>% filter(package == pkgname) %>% nrow
 }  
 
-# 
+# 2.2.2.3
+
+# we can write a separate function to check that the packages are installed
+check_pkg_deps <- function() {
+  if(!require(readr)) {
+    message("installing the 'readr' package")
+    install.packages("readr")
+  }
+  if(!require(dplyr))
+    stop("the 'dplyr' package needs to be installed first")
+}
+
+# require returns TRUE or FALSE depending on whether the package can be loaded or not.
+
+# updated function for package dependencies:
+num_download <- function(pkgname, date = "2016-07-20") {
+  check_pkg_deps()
+  dest <- check_for_logfile(date)
+  cran <- read_csv(dest, col_types = "ccicccccci", progress = FALSE)
+  cran %>% filter(package == pkgname) %>% nrow
+}
+
+# 2.2.2.4
+
