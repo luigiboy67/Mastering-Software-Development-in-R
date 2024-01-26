@@ -123,3 +123,4 @@ num_download <- function(pkgname, date = "2016-07-20") {
 
 # 2.2.2.4
 
+# Vectorization means that each argument must be a single value
