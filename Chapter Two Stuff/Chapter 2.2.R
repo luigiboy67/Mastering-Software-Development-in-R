@@ -124,3 +124,63 @@ num_download <- function(pkgname, date = "2016-07-20") {
 # 2.2.2.4
 
 # Vectorization means that each argument must be a single value
+# Ex:
+# 'pkgname' can now be a character vector of names
+num_download <- function(pkgname, date = "2016-07-20") {
+  check_pkg_deps()
+  dest <- check_for_logfile(date)
+  cran <- read_csv(dest, col_types = "ccicccccci", progress = FALSE)
+  cran %>% filter(package %in% pkgname) %>% 
+    group_by(package) %>%
+    summarize(n = n())
+}  
+
+num_download(c("filehash", "weathermetrics"))
+
+# 2.2.2.5
+
+# Checking that the arguments supplied by the reader are proper is a good way to prevent confusing results or error messages from occurring later on in the function.
+
+num_download <- function(pkgname, date = "2016-07-20") {
+  check_pkg_deps()
+  
+  ## Check arguments
+  if(!is.character(pkgname))
+    stop("'pkgname' should be character")
+  if(!is.character(date))
+    stop("'date' should be character")
+  if(length(date) != 1)
+    stop("'date' should be length 1")
+  
+  dest <- check_for_logfile(date)
+  cran <- read_csv(dest, col_types = "ccicccccci", 
+                   progress = FALSE)
+  cran %>% filter(package %in% pkgname) %>% 
+    group_by(package) %>%
+    summarize(n = n())
+}
+
+# note that here, we chose to stop() and throw an error if the argument was not of the appropriate type.
+num_download("filehash", c("2016-07-20", "2016-0-21"))
+
+# 2.2.3
+
+# R packages are collections of functions that together allow one to conduct a series of related operations.
+# They similarly have an interface or API which specifies to the user what functions he/she can call in their own code.
+
+# 2.2.4
+
+# When to write a function:
+# If you're going to do something once (that does happen on occasion), just write some code and document it very well.
+# If you're going to do something twice, write a function.
+# If you're going to do something three times or more,  you should think about writing a small package.
+
+# 2.2.5
+
+# In Summary:
+# Code is written to accomplish a specific task or a specific instance of a task
+# The code is examined to identify key aspects that may be modified by other users; these aspects are abstracted out of the code and made into arguments of a function.
+# Functions are written to accomplish more general versions of a task; specific instances of the task are indicated by setting values of function arguments
+# Function code can be re-factored to provide better modularity and to divide functions into specific sub-tasks.
+# Functions can be assembled and organized into R packages.
+
