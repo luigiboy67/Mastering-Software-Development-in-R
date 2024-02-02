@@ -3,7 +3,7 @@
 # The learning objectives of the section are:
 
 # Describe functional programming concepts
-# Write funcional programming code using the purrr package
+# Write functional programming code using the purrr package
 
 # 2.3.1
 
@@ -14,7 +14,7 @@
 # Functions
 # Function Application (evaluating functions given arguments and/or data)
 
-# You can provide a funciton as an argument to another funciton, and a function can return another function as its results
+# You can provide a function as an argument to another function, and a function can return another function as its results
 
 # Here's a function that returns a function when evaluated:
 adder_maker <- function(n){
@@ -133,3 +133,78 @@ detect(20:40, function(x){
 detect_index(20:40, function(x){
   x > 22 && x %% 2 == 0
 })
+
+# 2.3.2.4
+
+# functions that includes keep, discard, every, and some are known as filter functions.
+# each of these functions takes a vector and a predicate function
+
+# keep function keeps the elements of a vector that satisfies the predicate function while removing the other elements
+# ex:
+keep(1:20, function(x){
+  x %% 2 == 0
+})
+
+# discard function works similarly, but it returns elements that doesn't satisfy the predicate function
+# ex:
+discard(1:20, function(x){
+  x %% 2 == 0
+})
+
+# every function returns TRUE if every element in the vector satisfies the predicate function
+# ex:
+every(1:20, function(x){
+  x %% 2 == 0
+})
+
+# some functions returns true if at least one element in the vector satisfies the predicate function:
+# ex
+some(1:20, function(x){
+  x %% 2 == 0
+})
+
+# compose function combines any number of functions into one function:
+# ex:
+n_unique <- compose(length, unique)
+# The composition above is the same as:
+# n_unique <- function(x){
+#   length(unique(x))
+# }
+
+
+rep(1:5, 1:5)
+n_unique(rep(1:5, 1:5))
+
+# 2.3.3
+
+# 2.3.3.1
+
+# partial application of functions can allow functions to behave a little like data structures.
+
+# partial function from the purr package can specify some of the arguments of a function, and returns a function that only takes the unspecified arguments.
+# ex:
+
+library(purrr)
+
+mult_three_n <- function(x, y, z){
+  x * y * z
+}
+
+mult_by_15 <- partial(mult_three_n, x = 3, y = 5)
+
+mult_by_15(z = 4)
+
+# 2.3.3.2
+
+# Side effects of functions occur whenever a function interacts with the "outside world" - reading or writing data, printing to the console, and displaying a graph are all side effects.
+
+# with the walk function, you can evaluate a function across a data structure.
+# Ex:
+library(purrr)
+
+walk(c("Friends, Romans, countrymen,",
+       "lend me your ears;",
+       "I come to bury Caesar,", 
+       "not to praise him."), message)
+
+# 2.3.3.3
