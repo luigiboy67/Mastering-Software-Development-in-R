@@ -290,6 +290,16 @@
       ],
       "Hash": "3f038e5ac7f41d4ac41ce658c85e3042"
     },
+    "codetools": {
+      "Package": "codetools",
+      "Version": "0.2-19",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "c089a619a7fae175d149d89164f8c7d8"
+    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.1-0",
@@ -992,6 +1002,21 @@
       ],
       "Hash": "07fb0c5b727b15b0ce40feb641498e4e"
     },
+    "lobstr": {
+      "Package": "lobstr",
+      "Version": "1.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cpp11",
+        "crayon",
+        "methods",
+        "prettyunits",
+        "rlang"
+      ],
+      "Hash": "f2a94f8fc9db382a642e965339635ad6"
+    },
     "lubridate": {
       "Package": "lubridate",
       "Version": "1.9.3",
@@ -1042,6 +1067,17 @@
         "utils"
       ],
       "Hash": "3460beba7ccc8946249ba35327ba902a"
+    },
+    "microbenchmark": {
+      "Package": "microbenchmark",
+      "Version": "1.4.10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "graphics",
+        "stats"
+      ],
+      "Hash": "db81b552e393ed092872cf7023469bc2"
     },
     "mime": {
       "Package": "mime",
@@ -1270,6 +1306,21 @@
       ],
       "Hash": "0d8a15c9d000970ada1ab21405387dee"
     },
+    "pryr": {
+      "Package": "pryr",
+      "Version": "0.1.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "codetools",
+        "lobstr",
+        "methods",
+        "stringr"
+      ],
+      "Hash": "cfcbe960eca81ceca61df5fa622693de"
+    },
     "ps": {
       "Package": "ps",
       "Version": "1.7.5",
@@ -1374,13 +1425,8 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.0.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "utils"
-      ],
-      "Hash": "41b847654f567341725473431dd0d5ab"
+      "Version": "1.0.4",
+      "Source": "Repository"
     },
     "reprex": {
       "Package": "reprex",
