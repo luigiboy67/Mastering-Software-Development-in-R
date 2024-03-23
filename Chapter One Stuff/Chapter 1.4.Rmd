@@ -79,11 +79,11 @@ zika_brazil %>%
   select(location, value, unit)
 ```
 
-# 1.4.2
+#### 1.4.2
 
 API stands for "Application Program Interface"; They provide rules for software applications to interact.
 
-For R users, APIs provide rules you need to know to write R code to request and pull data from the organizations's web server into your R session.
+For R users, APIs provide rules you need to know to write R code to request and pull data from the organization's web server into your R session.
 
 Basic steps for accessing and using data from a web API when working in R are:
 
